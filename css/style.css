@@ -1,0 +1,31 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+.game_board {
+   width: 90%;
+   height: 600px;
+   border: 2px solid black;
+   margin: 0 auto;
+   position: relative;
+   overflow: hidden;
+}
+
+.pipe {
+   position: absolute;
+   bottom: 0;
+   width: 85px;
+   animation: pipe_animation 2.2s linear infinite;
+}
+
+@keyframes pipe_animation {
+   from {
+      right: -85px;
+   }
+
+   to {
+      right: 100%;
+   }
+}
