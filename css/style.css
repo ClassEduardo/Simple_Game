@@ -5,19 +5,38 @@
 }
 
 .game_board {
-   width: 85%;
+   width: 100%;
    height: 550px;
-   border: 1px solid black;
+   border-bottom: 20px solid rgb(35, 160, 35);
    margin: 0 auto;
    position: relative;
    overflow: hidden;
+   background: linear-gradient(#5acbf8, #cbeaf7);
 }
 
 .pipe {
    position: absolute;
    bottom: 0;
    width: 80px;
-   animation: pipe_animation 2.2s linear infinite;
+   /* left: 130px; */
+   animation: pipe_animation 1.5s linear infinite;
+}
+
+.clouds {
+   position: absolute;
+   width: 700px;
+   animation: clouds_animation 15s infinite linear;
+}
+
+.mario {
+   width: 160px;
+   position: absolute;
+   /* bottom: 105px; */
+   bottom: 0;
+}
+
+.jump {
+   animation: jump 530ms ease-out;
 }
 
 @keyframes pipe_animation {
@@ -30,34 +49,34 @@
    }
 }
 
-.mario {
-   width: 160px;
-   position: absolute;
-   bottom: 0;
-}
-
-.jump {
-   animation: jump 500ms ease-out;
-}
-
 @keyframes jump {
    0% {
       bottom: 0%;
    }
 
    40% {
-      bottom: 180px;
+      bottom: 190px;
    }
 
    50% {
-      bottom: 180px;
+      bottom: 190px;
    }
 
    60% {
-      bottom: 180px;
+      bottom: 190px;
    }
 
    100% {
       bottom: 0;
+   }
+}
+
+@keyframes clouds_animation {
+   from {
+      right: -700px;
+   }
+
+   to {
+      right: 100%;
    }
 }
