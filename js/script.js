@@ -4,6 +4,7 @@ class GameJumpMario {
       this.callJump();
       this.loopGame();
       this.addClass();
+      this.countScore();
    }
    
    addClass() {
@@ -26,20 +27,22 @@ class GameJumpMario {
             mario.classList.remove('jump')
          }, 530)
    }
-
+   
    loopGame(){
       const pipe = this.game_board.querySelector('.pipe');
       const mario = this.game_board.querySelector('.mario');
-      const buttonReset = document.querySelector('.restart');
 
-      const loop = setInterval(() => { 
+      const buttonReset = document.querySelector('.restart');
+      const buttonStart = document.querySelector('.start');
+
+      const loopGameLoss = setInterval(() => { 
          const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
          const pipePosition = pipe.offsetLeft;
 
-         if(pipePosition <= 132 && pipePosition > 0 && marioPosition < 105) {
+         if(pipePosition <= 143 && pipePosition > 0 && marioPosition < 105) {
             pipe.style.animation = 'none';
             pipe.style.left = `${pipePosition}px`;
-
+            
             mario.style.animation = 'none';
             mario.style.bottom = `${marioPosition}px`;
 
@@ -48,10 +51,29 @@ class GameJumpMario {
             mario.style.marginLeft = '47px'
 
             buttonReset.removeAttribute('disabled');
+            buttonStart.removeAttribute('onclick');
 
-            clearInterval(loop);
-         };
+            buttonStart.style.background = 'rgba(239, 239, 239, 0.4)'
+            buttonStart.style.color = 'rgba(16, 16, 16, 0.3)'
+
+            clearInterval(loopGameLoss);
+         }
+         
       }, 10)
+   }
+
+   countScore() {
+      const pipe = this.game_board.querySelector('.pipe');
+
+      const loopScore = setInterval(() => { 
+         const pipePosition = pipe.offsetLeft;
+
+         let score = 0;
+         if(pipePosition <= -50) {
+            score++;
+            console.log(score)
+         }
+      }, 5)
    }
 
    creatScore(ponto) {
